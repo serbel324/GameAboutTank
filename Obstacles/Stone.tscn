@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1ubajhcxy75j"]
+
+[ext_resource type="Texture2D" uid="uid://b71kyiwfdeybv" path="res://Obstacles/Stone.png" id="1_476at"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6hvbt"]
+
+[node name="Stone" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.75, 1.75)
+shape = SubResource("CircleShape2D_6hvbt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_476at")

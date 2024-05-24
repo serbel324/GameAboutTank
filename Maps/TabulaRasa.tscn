@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cv3setsolh8l2"]
+
+[ext_resource type="PackedScene" uid="uid://bjpcrch5s06wk" path="res://Tank/Hull.tscn" id="1_rxp5m"]
+[ext_resource type="PackedScene" uid="uid://c1ubajhcxy75j" path="res://Obstacles/Stone.tscn" id="2_e4q0f"]
+
+[node name="TabulaRasa" type="Node2D"]
+
+[node name="Tank" parent="." instance=ExtResource("1_rxp5m")]
+position = Vector2(281, 345)
+
+[node name="Stone" parent="." instance=ExtResource("2_e4q0f")]
+position = Vector2(365, 385)
+
+[node name="Stone2" parent="." instance=ExtResource("2_e4q0f")]
+position = Vector2(408, 316)
+
+[node name="Stone3" parent="." instance=ExtResource("2_e4q0f")]
+position = Vector2(249, 314)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(333, 344)
+zoom = Vector2(3, 3)
