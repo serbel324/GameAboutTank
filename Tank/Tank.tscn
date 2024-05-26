@@ -1,11 +1,11 @@
 [gd_scene load_steps=4 format=3 uid="uid://bjpcrch5s06wk"]
 
 [ext_resource type="Texture2D" uid="uid://b7betxt1mfvc4" path="res://Tank/Placeholder.png" id="1_lwwcr"]
-[ext_resource type="Script" path="res://Tank/Hull.gd" id="1_spwa5"]
+[ext_resource type="Script" path="res://Tank/Tank.gd" id="1_spwa5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vp46g"]
 
-[node name="Hull" type="RigidBody2D"]
+[node name="Tank" type="RigidBody2D"]
 gravity_scale = 1.66533e-16
 script = ExtResource("1_spwa5")
 turret_position = Vector2(-2, 2.08165e-12)
