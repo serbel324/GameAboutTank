@@ -1,11 +1,12 @@
 extends Node2D
+class_name Turret
 
 enum State {
 	ALIVE,
 	DEAD
 }
 
-@export var rotation_speed : float = 1
+var rotation_speed : float = 1
 
 var angular_speed : float = 0
 var angle_to_target : float = 0

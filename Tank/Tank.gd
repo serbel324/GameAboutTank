@@ -5,11 +5,12 @@ enum State {
 	DEAD
 }
 
-@export var forward_movement_speed : float = 100.0
 @export var backward_movement_speed : float = 30.0
+@export var forward_movement_speed : float = 100.0
 @export var hull_rotation_speed : float = 3.0
 @export var turret_position : Vector2 = Vector2.ZERO
 @export var camera_view_distance : float = 0.3
+@export var turret_rotation_speed : float = 1.0
 
 @export var turret_scene: PackedScene = preload("res://Tank/Turret.tscn")
 
@@ -27,7 +28,9 @@ func _ready():
 	turret_socket = find_child("TurretSocket")
 	assert(turret_socket != null)
 	turret_socket.position = turret_position
-	turret_socket.add_child(turret_scene.instantiate())
+	var turret : Turret = turret_scene.instantiate() as Turret
+	turret.rotation_speed = turret_rotation_speed
+	turret_socket.add_child(turret)
 
 	camera = get_parent().find_child("PlayerCamera")
 	assert(camera != null)
@@ -51,7 +54,7 @@ func process_input():
 	camera.position = (mouse_pos - screen_dimensions / 2) * camera_view_distance + position
 
 
-func state_alive(delta : float):
+func state_alive(_delta : float):
 	process_input()
 
 

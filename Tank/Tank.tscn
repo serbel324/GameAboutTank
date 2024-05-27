@@ -9,6 +9,7 @@
 gravity_scale = 1.66533e-16
 script = ExtResource("1_spwa5")
 turret_position = Vector2(-2, 2.08165e-12)
+turret_rotation_speed = 0.2
 
 [node name="HullCollider" type="CollisionShape2D" parent="."]
 scale = Vector2(2, 1)
