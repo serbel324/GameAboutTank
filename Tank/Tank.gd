@@ -42,7 +42,7 @@ func process_input():
 	var left_turn : float = Input.get_action_strength("turn_left")
 	var right_turn : float = Input.get_action_strength("turn_right")
 
-	if (forward_movement < 0.1):
+	if (forward_movement == 0 && backward_movement > 0):
 		linear_movement = backward_movement * -backward_movement_speed
 		angular_movement = (left_turn - right_turn) * hull_rotation_speed
 	else:
