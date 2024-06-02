@@ -1,21 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://cv3setsolh8l2"]
+[gd_scene load_steps=6 format=3 uid="uid://cv3setsolh8l2"]
 
 [ext_resource type="PackedScene" uid="uid://bjpcrch5s06wk" path="res://Tank/Tank.tscn" id="1_rxp5m"]
 [ext_resource type="TileSet" uid="uid://4b1cs2ddyc2c" path="res://Maps/Ground.tres" id="3_3t1ck"]
 [ext_resource type="PackedScene" uid="uid://dtmwd1cjmwxh4" path="res://Enemies/Zombie.tscn" id="4_3uwin"]
-[ext_resource type="Script" path="res://Maps/Generator.gd" id="4_ph025"]
+[ext_resource type="Script" path="res://Maps/Ground.gd" id="4_ph025"]
+[ext_resource type="Script" path="res://Enemies/Spawner.gd" id="5_nfrt8"]
 
 [node name="TabulaRasa" type="Node2D"]
 
 [node name="Tank" parent="." instance=ExtResource("1_rxp5m")]
 position = Vector2(281, 345)
-camera_view_distance = 0.1
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 position = Vector2(333, 344)
 zoom = Vector2(3, 3)
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="Ground" type="TileMap" parent="."]
 show_behind_parent = true
 position = Vector2(0, 1)
 scale = Vector2(2, 2)
@@ -26,8 +26,7 @@ layer_0/tile_data = PackedInt32Array(196609, 131072, 0, 196608, 131072, 0, 26214
 script = ExtResource("4_ph025")
 map_size = Vector2i(80, 80)
 
-[node name="Zombie" parent="." instance=ExtResource("4_3uwin")]
-position = Vector2(445, 332)
-
-[node name="Zombie2" parent="." instance=ExtResource("4_3uwin")]
-position = Vector2(444, 429)
+[node name="Spawner" type="Node" parent="." node_paths=PackedStringArray("ground")]
+script = ExtResource("5_nfrt8")
+ground = NodePath("../Ground")
+zombie_scene = ExtResource("4_3uwin")
