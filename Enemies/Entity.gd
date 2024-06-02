@@ -16,6 +16,10 @@ func _init():
 	health = max_health
 	state = State.ALIVE
 
+func spawn(pos : Vector2):
+	if (pos != null):
+		position = pos
+
 
 func hit(damage : Damage):
 	health -= damage.damage_pts

@@ -22,6 +22,7 @@ func _ready():
 	turret_socket = find_child("TurretSocket")
 	assert(turret_socket != null)
 	turret_socket.position = turret_position
+
 	var turret : Turret = turret_scene.instantiate() as Turret
 	turret.rotation_speed = turret_rotation_speed
 	turret_socket.add_child(turret)
