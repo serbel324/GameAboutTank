@@ -13,7 +13,7 @@ func _ready():
 	print(target)
 
 
-func state_alive(_delta : float):
+func state_alive(_delta : float) -> void:
 	if (target != null):
 		direction = (target.global_position - global_position).normalized()
 		linear_movement = direction * speed

@@ -31,7 +31,7 @@ func _ready():
 	assert(camera != null)
 
 
-func process_input():
+func process_input() -> void:
 	var forward_movement : float = Input.get_action_strength("move_forward")
 	var backward_movement : float = Input.get_action_strength("move_backward")
 	var left_turn : float = Input.get_action_strength("turn_left")
@@ -49,7 +49,7 @@ func process_input():
 	camera.position = (mouse_pos - screen_dimensions / 2) * camera_view_distance + position
 
 
-func state_alive(_delta : float):
+func state_alive(_delta : float) -> void:
 	process_input()
 
 

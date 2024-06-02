@@ -18,7 +18,7 @@ func _ready():
 	assert(zombie_scene != null)
 
 
-func try_to_spawn_in_random_location(tries : int):
+func try_to_spawn_in_random_location(tries : int) -> bool:
 	for i in tries:
 		var cell_x : int = randi_range(0, ground.map_size.x - 1)
 		var cell_y : int = randi_range(0, ground.map_size.y - 1)
@@ -29,7 +29,8 @@ func try_to_spawn_in_random_location(tries : int):
 			var new_zombie : Entity = zombie_scene.instantiate() as Entity
 			new_zombie.spawn(pos)
 			get_parent().add_child(new_zombie)
-			return
+			return true
+	return false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
