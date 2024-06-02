@@ -58,6 +58,6 @@ func _ready():
 			else:
 				cell_type = randi() % Cell.COUNT as Cell
 			
-			set_cell_by_idx
+			set_cell_by_coords(Vector2i(x, y), cell_type)
 			var atlas_coord : Vector2i = Vector2i(cell_type, 0)
 			set_cell(0, Vector2i(x, y), tile_set_source_id, atlas_coord)
