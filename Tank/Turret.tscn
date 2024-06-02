@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://bgk6twk7h8b31"]
 
-[ext_resource type="Texture2D" uid="uid://fg80fqf8kfs5" path="res://Tank/Placeholder2.png" id="1_awcn7"]
 [ext_resource type="Script" path="res://Tank/Turret.gd" id="1_srlxi"]
+[ext_resource type="Texture2D" uid="uid://b5jyyu2ljos67" path="res://Tank/Turret.png" id="2_yux7f"]
 
 [node name="Turret" type="Node2D"]
 script = ExtResource("1_srlxi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("1_awcn7")
+scale = Vector2(0.64, 0.64)
+texture = ExtResource("2_yux7f")
