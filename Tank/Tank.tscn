@@ -6,6 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vp46g"]
 
 [node name="Tank" type="RigidBody2D"]
+mass = 46000.0
 gravity_scale = 1.66533e-16
 script = ExtResource("1_spwa5")
 turret_position = Vector2(-2, 2.08165e-12)

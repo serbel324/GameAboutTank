@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtmwd1cjmwxh4"]
+
+[ext_resource type="Script" path="res://Enemies/Zombie.gd" id="1_8h5mj"]
+[ext_resource type="Texture2D" uid="uid://cpm3n3bbwv217" path="res://Enemies/Tankist.png" id="2_3ee70"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yu8ff"]
+
+[node name="Zombie" type="RigidBody2D"]
+mass = 45.0
+gravity_scale = 1.66533e-16
+script = ExtResource("1_8h5mj")
+speed = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_yu8ff")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 3.14159
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_3ee70")
