@@ -14,10 +14,10 @@ var angle_to_target : float = 0
 var state : State
 var target : Vector2
 
-func die():
+func die() -> void:
 	state = State.DEAD
 
-func process_input():
+func process_input() -> void:
 	target = get_viewport().get_mouse_position()
 	var position_on_canvas : Vector2 = get_global_transform_with_canvas().get_origin()
 	var forward : Vector2 = global_transform.basis_xform(Vector2.RIGHT)
@@ -33,7 +33,7 @@ func process_input():
 func _ready():
 	state = State.ALIVE
 
-func state_alive(delta : float):
+func state_alive(delta : float) -> void:
 	process_input()
 	
 	var delta_angle : float = angular_speed * delta

@@ -16,28 +16,28 @@ var volume : int
 var map : Array[Cell]
 
 
-func get_map_volume():
+func get_map_volume() -> int:
 	return volume
 
 
-func get_cell_by_coords(coords : Vector2i):
+func get_cell_by_coords(coords : Vector2i) -> Cell:
 	return get_cell_by_idx(coords.y * map_size.x + coords.x)
 
 
-func get_cell_by_idx(idx : int):
+func get_cell_by_idx(idx : int) -> Cell:
 	assert(idx < volume)
 	return map[idx]
 
 
-func set_cell_by_coords(coords : Vector2i, cell : Cell):
+func set_cell_by_coords(coords : Vector2i, cell : Cell) -> void:
 	set_cell_by_idx(coords.y * map_size.x + coords.x, cell)
 
 
-func set_cell_by_idx(idx : int, cell : Cell):
+func set_cell_by_idx(idx : int, cell : Cell) -> void:
 	map[idx] = cell
 
 
-func get_cell_global_coords(tile : Vector2i):
+func get_cell_global_coords(tile : Vector2i) -> Vector2:
 	return to_global(map_to_local(tile))
 
 
