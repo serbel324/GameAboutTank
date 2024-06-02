@@ -1,9 +1,4 @@
-extends RigidBody2D
-
-enum State {
-	ALIVE,
-	DEAD
-}
+extends Entity
 
 @export var backward_movement_speed : float = 30.0
 @export var forward_movement_speed : float = 100.0
@@ -16,7 +11,6 @@ enum State {
 
 var linear_movement : float = 0
 var angular_movement : float = 0
-var state : State
 var camera : Node2D = null
 var turret_socket : Node2D = null
 
@@ -62,6 +56,7 @@ func _integrate_forces(physics_state : PhysicsDirectBodyState2D):
 	var direction : Vector2 = global_transform.basis_xform(Vector2.RIGHT)
 	physics_state.linear_velocity = direction * linear_movement
 	physics_state.angular_velocity = angular_movement
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
