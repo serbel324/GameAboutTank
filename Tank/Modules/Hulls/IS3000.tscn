@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://8th2ycqylnly"]
+
+[ext_resource type="Script" path="res://Tank/Modules/Hulls/HullBase.gd" id="1_16ue8"]
+[ext_resource type="Texture2D" uid="uid://d2rmihmbw50xd" path="res://Tank/Tank.png" id="1_goirk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uaoky"]
+
+[node name="Hull" type="RigidBody2D"]
+gravity_scale = 1.66533e-16
+script = ExtResource("1_16ue8")
+
+[node name="HullCollider" type="CollisionShape2D" parent="."]
+scale = Vector2(2, 1)
+shape = SubResource("RectangleShape2D_uaoky")
+
+[node name="HullTexture" type="Sprite2D" parent="."]
+scale = Vector2(0.64, 0.64)
+texture = ExtResource("1_goirk")
+
+[node name="TurretSocket" type="Node2D" parent="."]
+position = Vector2(-5, 0)

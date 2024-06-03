@@ -1,34 +1,37 @@
-extends Entity
+class_name TankController extends Node2D
 
-@export var backward_movement_speed : float = 30.0
-@export var forward_movement_speed : float = 100.0
-@export var hull_rotation_speed : float = 3.0
-@export var turret_position : Vector2 = Vector2.ZERO
-@export var camera_view_distance : float = 0.3
-@export var turret_rotation_speed : float = 1.0
+enum State {
+	ALIVE,
+	DEAD
+}
 
-@export var turret_scene: PackedScene = preload("res://Tank/Turret.tscn")
 
-var linear_movement : float = 0
-var angular_movement : float = 0
-var camera : Node2D = null
-var turret_socket : Node2D = null
+
+@export var hull_scene : PackedScene = preload("res://Tank/Modules/Hulls/IS3000.tscn")
+@export var turret_scene : PackedScene = preload("res://Tank/Modules/Turrets/IS3000.tscn")
+
+var turret : Turret = null
+var hull : Hull = null
+
+var state : State = State.ALIVE
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	state = State.ALIVE
+	
+	hull = hull_scene.instantiate() as Hull
+	assert(hull != null)
 
-	turret_socket = find_child("TurretSocket")
+	turret = turret_scene.instantiate() as Turret
+	assert(turret != null)
+
+	var turret_socket : Node2D = hull.find_child("TurretSocket")
 	assert(turret_socket != null)
-	turret_socket.position = turret_position
 
-	var turret : Turret = turret_scene.instantiate() as Turret
-	turret.rotation_speed = turret_rotation_speed
 	turret_socket.add_child(turret)
+	add_child(hull)
 
-	camera = get_parent().find_child("PlayerCamera")
-	assert(camera != null)
 
 
 func process_input() -> void:
@@ -36,27 +39,23 @@ func process_input() -> void:
 	var backward_movement : float = Input.get_action_strength("move_backward")
 	var left_turn : float = Input.get_action_strength("turn_left")
 	var right_turn : float = Input.get_action_strength("turn_right")
+	
+	turret.set_target(get_global_mouse_position())
 
 	if (forward_movement == 0 && backward_movement > 0):
-		linear_movement = backward_movement * -backward_movement_speed
-		angular_movement = (left_turn - right_turn) * hull_rotation_speed
+		hull.add_linear_movement(-backward_movement)
+		hull.add_rotation(left_turn - right_turn)
 	else:
-		linear_movement = forward_movement * forward_movement_speed
-		angular_movement = (right_turn - left_turn) * hull_rotation_speed
-	
+		hull.add_linear_movement(forward_movement)
+		hull.add_rotation(right_turn - left_turn)
+
 	var mouse_pos : Vector2 = get_viewport().get_mouse_position()
 	var screen_dimensions : Vector2 = get_viewport_rect().size
-	camera.position = (mouse_pos - screen_dimensions / 2) * camera_view_distance + position
+	turret.update_camera_position(mouse_pos - screen_dimensions / 2)
 
 
 func state_alive(_delta : float) -> void:
 	process_input()
-
-
-func _integrate_forces(physics_state : PhysicsDirectBodyState2D):
-	var direction : Vector2 = global_transform.basis_xform(Vector2.RIGHT)
-	physics_state.linear_velocity = direction * linear_movement
-	physics_state.angular_velocity = angular_movement
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -66,3 +65,7 @@ func _process(delta):
 			state_alive(delta)
 		State.DEAD:
 			pass
+
+
+func get_hull() -> Hull:
+	return hull

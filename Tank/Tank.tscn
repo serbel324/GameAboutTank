@@ -1,23 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://bjpcrch5s06wk"]
+[gd_scene load_steps=2 format=3 uid="uid://bjpcrch5s06wk"]
 
 [ext_resource type="Script" path="res://Tank/Tank.gd" id="1_spwa5"]
-[ext_resource type="Texture2D" uid="uid://d2rmihmbw50xd" path="res://Tank/Tank.png" id="2_2prsv"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vp46g"]
-
-[node name="Tank" type="RigidBody2D"]
-mass = 46000.0
-gravity_scale = 1.66533e-16
+[node name="Tank" type="Node2D"]
 script = ExtResource("1_spwa5")
-turret_position = Vector2(-4, 2.08165e-12)
-turret_rotation_speed = 0.8
-
-[node name="HullCollider" type="CollisionShape2D" parent="."]
-scale = Vector2(2, 1)
-shape = SubResource("RectangleShape2D_vp46g")
-
-[node name="HullTexture" type="Sprite2D" parent="."]
-scale = Vector2(0.64, 0.64)
-texture = ExtResource("2_2prsv")
-
-[node name="TurretSocket" type="Node2D" parent="."]
