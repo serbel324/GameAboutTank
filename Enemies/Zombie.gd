@@ -9,8 +9,8 @@ var direction : Vector2 = Vector2.RIGHT
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	target = get_parent().find_child("Tank") as Node2D
-	print(target)
+	var tank : TankController = get_node("/root/World/Tank") as TankController
+	target = tank.get_hull()
 
 
 func state_alive(_delta : float) -> void:

@@ -16,6 +16,7 @@ func _init():
 	health = max_health
 	state = State.ALIVE
 
+
 func spawn(pos : Vector2) -> void:
 	if (pos != null):
 		position = pos
@@ -26,3 +27,8 @@ func hit(damage : Damage) -> void:
 	if (health < 0):
 		health = 0
 		state = State.DEAD
+		die()
+
+
+func die() -> void:
+	queue_free()
