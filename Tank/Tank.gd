@@ -48,7 +48,7 @@ func process_input() -> void:
 		hull.add_rotation(right_turn - left_turn)
 
 	var vp_rect: Rect2 = get_viewport_rect()
-	var vp_rect_center: Vector2 = vp_rect.size / 2
+	var vp_rect_center: Vector2 = vp_rect.get_center()
 	var mouse_pos: Vector2 = get_viewport().get_mouse_position()
 
 	if not vp_rect.has_point(mouse_pos): # mouse out of window check
