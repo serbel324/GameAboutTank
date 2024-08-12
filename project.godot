@@ -15,6 +15,11 @@ run/main_scene="res://Maps/World.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/scale=0.75
+
 [input]
 
 move_forward={
@@ -45,5 +50,6 @@ regenerate_map={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
