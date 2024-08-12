@@ -14,14 +14,9 @@ var hull: Hull = null
 
 var state: State = State.ALIVE
 
-var mouse_in_window: bool = false
-var mouse_pos: Vector2 = Vector2()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
-	mouse_pos = Vector2(get_window().size / 2)
-
 	state = State.ALIVE
 	
 	hull = hull_scene.instantiate() as Hull
@@ -53,7 +48,17 @@ func process_input() -> void:
 		hull.add_rotation(right_turn - left_turn)
 
 	var screen_dimensions: Vector2 = get_viewport_rect().size
-	if mouse_in_window: mouse_pos = get_viewport().get_mouse_position()
+	var mouse_pos: Vector2 = get_viewport().get_mouse_position()
+
+	if mouse_pos.x < 0 or mouse_pos.y < 0 or mouse_pos.x > screen_dimensions.x or mouse_pos.y > screen_dimensions.y: # mouse out of screen check
+		var screen_center: Vector2 = screen_dimensions / 2
+		var view_direction: Vector2 = mouse_pos - screen_dimensions / 2
+		var tan_view: float = abs(view_direction.y / view_direction.x)
+		if tan_view > screen_center.y / screen_center.x: # top/bottom
+			mouse_pos = screen_center + Vector2(screen_center.y / tan_view, screen_center.y) * sign(view_direction)
+		else: # left/right
+			mouse_pos = screen_center + Vector2(screen_center.x, screen_center.x * tan_view) * sign(view_direction)
+
 	turret.update_camera_position(mouse_pos - screen_dimensions / 2)
 
 
@@ -68,14 +73,6 @@ func _process(delta):
 			state_alive(delta)
 		State.DEAD:
 			pass
-
-
-func _notification(what):
-	match what:
-		NOTIFICATION_WM_MOUSE_EXIT:
-			mouse_in_window = false
-		NOTIFICATION_WM_MOUSE_ENTER:
-			mouse_in_window = true
 
 
 func get_hull() -> Hull:
