@@ -52,7 +52,7 @@ func process_input() -> void:
 	var mouse_pos: Vector2 = get_viewport().get_mouse_position()
 
 	if not vp_rect.has_point(mouse_pos): # mouse out of window check
-		var view_direction: Vector2 = mouse_pos - vp_rect.size / 2
+		var view_direction: Vector2 = mouse_pos - vp_rect_center
 		var tan_view: float = abs(view_direction.y / view_direction.x)
 		if tan_view > vp_rect_center.y / vp_rect_center.x: # top/bottom
 			mouse_pos = vp_rect_center + Vector2(vp_rect_center.y / tan_view, vp_rect_center.y) * sign(view_direction)
