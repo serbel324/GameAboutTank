@@ -6,6 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uaoky"]
 
 [node name="Hull" type="RigidBody2D"]
+mass = 46000.0
 gravity_scale = 1.66533e-16
 script = ExtResource("1_16ue8")
 
