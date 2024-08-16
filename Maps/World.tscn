@@ -13,7 +13,7 @@ position = Vector2(281, 345)
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 position = Vector2(333, 344)
-zoom = Vector2(3, 3)
+zoom = Vector2(2, 2)
 
 [node name="Ground" type="TileMap" parent="."]
 show_behind_parent = true
