@@ -6,30 +6,48 @@ enum State {
 }
 
 
-@export var hull_scene: PackedScene = preload("res://Tank/Modules/Hulls/IS3000.tscn")
-@export var turret_scene: PackedScene = preload("res://Tank/Modules/Turrets/IS3000.tscn")
+@export var start_hull_scene: PackedScene = preload("res://Tank/Modules/Hulls/IS3000Hull.tscn")
+@export var start_turret_scene: PackedScene = preload("res://Tank/Modules/Turrets/IS3000Turret.tscn")
 
 var turret: Turret = null
 var hull: Hull = null
+var turret_socket : Node2D = null
 
 var state: State = State.ALIVE
 
 
+func replace_hull(scene : PackedScene) -> void:
+	if hull != null:
+		remove_child(hull)
+		hull.queue_free()
+		hull = null
+		turret_socket = null
+
+	hull = scene.instantiate() as Hull
+	print(hull)
+	print(scene)
+	assert(hull != null)
+	turret_socket = hull.find_child("TurretSocket")
+	assert(turret_socket != null)
+	add_child(hull)
+
+
+func replace_turret(scene : PackedScene) -> void:
+	if turret != null:
+		turret_socket.remove_child(turret)
+		turret.queue_free()
+		turret = null
+	turret = scene.instantiate() as Turret
+	assert(turret != null)
+	assert(turret_socket != null)
+	turret_socket.add_child(turret)
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	replace_hull(start_hull_scene)
+	replace_turret(start_turret_scene)
 	state = State.ALIVE
-	
-	hull = hull_scene.instantiate() as Hull
-	assert(hull != null)
-
-	turret = turret_scene.instantiate() as Turret
-	assert(turret != null)
-
-	var turret_socket: Node2D = hull.find_child("TurretSocket")
-	assert(turret_socket != null)
-
-	turret_socket.add_child(turret)
-	add_child(hull)
 
 
 func process_input() -> void:

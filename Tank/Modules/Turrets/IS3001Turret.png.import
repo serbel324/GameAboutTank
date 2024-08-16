@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5jyyu2ljos67"
-path="res://.godot/imported/Turret.png-6b58cea82269b4a7c74534bff48c1f47.ctex"
+uid="uid://owjfcjc0h2mr"
+path="res://.godot/imported/IS3001Turret.png-587cbd49db0f5a51acdd16d55a33ce56.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Tank/Turret.png"
-dest_files=["res://.godot/imported/Turret.png-6b58cea82269b4a7c74534bff48c1f47.ctex"]
+source_file="res://Tank/Modules/Turrets/IS3001Turret.png"
+dest_files=["res://.godot/imported/IS3001Turret.png-587cbd49db0f5a51acdd16d55a33ce56.ctex"]
 
 [params]
 
