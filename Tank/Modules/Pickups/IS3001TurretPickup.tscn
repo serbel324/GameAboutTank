@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1uqdtgpeobph"]
+
+[ext_resource type="Script" path="res://Tank/Modules/Pickups/PickupTurret.gd" id="1_qihtj"]
+[ext_resource type="Texture2D" uid="uid://cjjpgccpe7t2n" path="res://Tank/Modules/Pickups/IS3001TurretPickup.png" id="1_tsc2n"]
+[ext_resource type="PackedScene" uid="uid://dt4em8n42dgn1" path="res://Tank/Modules/Turrets/IS3001Turret.tscn" id="2_pyhit"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wlwee"]
+
+[node name="Is3001TurretPickup" type="Area2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_qihtj")
+turret_scene = ExtResource("2_pyhit")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_tsc2n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_wlwee")

@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cv3setsolh8l2"]
+[gd_scene load_steps=7 format=3 uid="uid://cv3setsolh8l2"]
 
 [ext_resource type="PackedScene" uid="uid://bjpcrch5s06wk" path="res://Tank/Tank.tscn" id="1_qxqdh"]
 [ext_resource type="TileSet" uid="uid://4b1cs2ddyc2c" path="res://Maps/Ground.tres" id="2_yf6bx"]
 [ext_resource type="Script" path="res://Maps/Ground.gd" id="3_m7nbp"]
 [ext_resource type="Script" path="res://Enemies/Spawner.gd" id="4_hkppf"]
 [ext_resource type="PackedScene" uid="uid://dtmwd1cjmwxh4" path="res://Enemies/Zombie.tscn" id="5_0calp"]
+[ext_resource type="PackedScene" uid="uid://d1uqdtgpeobph" path="res://Tank/Modules/Pickups/IS3001TurretPickup.tscn" id="6_702h6"]
 
 [node name="World" type="Node2D"]
 
@@ -30,3 +31,6 @@ map_size = Vector2i(100, 100)
 script = ExtResource("4_hkppf")
 ground = NodePath("../Ground")
 zombie_scene = ExtResource("5_0calp")
+
+[node name="Is3001TurretPickup" parent="." instance=ExtResource("6_702h6")]
+position = Vector2(430, 346)
