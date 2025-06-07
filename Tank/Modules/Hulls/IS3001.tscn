@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://chussbso4jnh8"]
+
+[ext_resource type="Script" path="res://Tank/Modules/Hulls/HullBase.gd" id="1_8vg8j"]
+[ext_resource type="Texture2D" uid="uid://d2rmihmbw50xd" path="res://Tank/Modules/Hulls/IS3000Hull.png" id="2_86kkr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uaoky"]
+
+[node name="Hull" type="RigidBody2D"]
+mass = 46000.0
+gravity_scale = 1.66533e-16
+script = ExtResource("1_8vg8j")
+
+[node name="HullCollider" type="CollisionShape2D" parent="."]
+scale = Vector2(2, 1)
+shape = SubResource("RectangleShape2D_uaoky")
+
+[node name="HullTexture" type="Sprite2D" parent="."]
+scale = Vector2(0.64, 0.64)
+texture = ExtResource("2_86kkr")
+
+[node name="TurretSocket" type="Node2D" parent="."]
+position = Vector2(-5, 0)

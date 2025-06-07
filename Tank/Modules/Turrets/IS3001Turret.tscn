@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dt4em8n42dgn1"]
+
+[ext_resource type="Script" path="res://Tank/Modules/Turrets/TurretBase.gd" id="1_k0x13"]
+[ext_resource type="Texture2D" uid="uid://owjfcjc0h2mr" path="res://Tank/Modules/Turrets/IS3001Turret.png" id="2_16kee"]
+
+[node name="Turret" type="Node2D"]
+script = ExtResource("1_k0x13")
+camera_view_distance = 1.6
+rotation_speed = 2.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.64, 0.64)
+texture = ExtResource("2_16kee")
