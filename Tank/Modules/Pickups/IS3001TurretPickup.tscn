@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Tank/Modules/Pickups/PickupTurret.gd" id="1_qihtj"]
 [ext_resource type="Texture2D" uid="uid://cjjpgccpe7t2n" path="res://Tank/Modules/Pickups/IS3001TurretPickup.png" id="1_tsc2n"]
-[ext_resource type="PackedScene" uid="uid://dt4em8n42dgn1" path="res://Tank/Modules/Turrets/IS3001Turret.tscn" id="2_pyhit"]
+[ext_resource type="PackedScene" uid="uid://dsqhnstfog7y" path="res://Tank/Modules/Turrets/IS3001Turret.tscn" id="2_pyhit"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wlwee"]
 

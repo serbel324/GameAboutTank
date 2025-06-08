@@ -9,10 +9,10 @@ class PerlinNoiseLayer:
 	func smootherstep(a0 : float, a1 : float, p : float) -> float:
 		return (a1 - a0) * ((p * (p * 6.0 - 15.0) + 10.0) * p * p * p) + a0
 
-	func _init(grid_size : Vector2i, cell_size : float):
-		self.grid_size = grid_size
-		self.cell_size = cell_size
-		volume = (grid_size.x + 1) * (grid_size.y + 1)
+	func _init(grid_size_ : Vector2i, cell_size_ : float):
+		self.grid_size = grid_size_
+		self.cell_size = cell_size_
+		volume = (grid_size_.x + 1) * (grid_size_.y + 1)
 		gradients.resize(volume)
 		for i in range(0, volume):
 			gradients[i] = Vector2.UP.rotated(randf_range(0, 2 * PI))

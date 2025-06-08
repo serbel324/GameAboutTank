@@ -55,6 +55,7 @@ func process_input() -> void:
 	var backward_movement: float = Input.get_action_strength("move_backward")
 	var left_turn: float = Input.get_action_strength("turn_left")
 	var right_turn: float = Input.get_action_strength("turn_right")
+	var cannon_fired: bool = Input.is_action_just_pressed("fire_cannon")
 
 	turret.set_target(get_global_mouse_position())
 
@@ -79,9 +80,16 @@ func process_input() -> void:
 
 	turret.update_camera_position(mouse_pos - vp_rect_center)
 
+	if cannon_fired:
+		turret.fire_cannon()
+
 
 func state_alive(_delta: float) -> void:
 	process_input()
+
+
+func state_dead(_delta: float) -> void:
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -90,7 +98,7 @@ func _process(delta):
 		State.ALIVE:
 			state_alive(delta)
 		State.DEAD:
-			pass
+			state_dead(delta)
 
 
 func get_hull() -> Hull:

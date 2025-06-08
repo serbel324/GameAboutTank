@@ -8,9 +8,13 @@ enum State {
 
 @export var camera_view_distance: float = 0.8
 @export var rotation_speed: float = 1.0
+@export var cannon_cooldown_sec: float = 3.0
+@export var projectile_scene: PackedScene = null
+
 
 var state: State = State.ALIVE
-var angular_speed: float = 0
+var angular_speed: float = 0.0
+var cannon_reload: float = 0.0
 
 var target: Vector2
 var tank: TankController = null
@@ -24,6 +28,7 @@ func die() -> void:
 func set_target(target_global: Vector2) -> void:
 	target = target_global
 
+
 func update_camera_position(shift: Vector2):
 	camera.position = shift * camera_view_distance / camera.zoom + global_position
 
@@ -36,6 +41,11 @@ func _ready():
 	
 	camera = get_node("/root/World/PlayerCamera") as Camera2D
 	assert(camera != null)
+	cannon_reload = 0.0
+
+
+func reload_cannon(delta: float) -> void:
+	cannon_reload = maxf(cannon_reload - delta, 0.0)
 
 
 func rotate_to_target(delta: float) -> void:
@@ -54,10 +64,24 @@ func rotate_to_target(delta: float) -> void:
 	elif (delta_angle < 0 && angle_to_target < 0):
 		delta_angle = maxf(delta_angle, angle_to_target)
 	rotate(delta_angle)
-	
+
 
 func state_alive(delta: float) -> void:
 	rotate_to_target(delta)
+	reload_cannon(delta)
+
+
+func state_dead(_delta: float) -> void:
+	pass
+
+
+func fire_cannon() -> void:
+	if cannon_reload == 0.0:
+		assert(projectile_scene != null)
+		var projectile: Projectile = projectile_scene.instantiate() as Projectile
+		projectile.launch(global_position, global_transform.basis_xform(Vector2.RIGHT), Entity.Team.TANK)
+		get_tree().root.add_child(projectile)
+		cannon_reload = cannon_cooldown_sec
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -66,4 +90,4 @@ func _process(delta):
 		State.ALIVE:
 			state_alive(delta)
 		State.DEAD:
-			pass
+			state_dead(delta)
