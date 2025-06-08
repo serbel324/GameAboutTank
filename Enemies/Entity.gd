@@ -1,7 +1,14 @@
 extends RigidBody2D
 class_name Entity
 
-@export var max_health : float = 100
+
+enum Team {
+	TANK,
+	ENEMY
+}
+
+@export var max_health : int = 100
+@export var team : Team = Team.ENEMY
 
 enum State {
 	ALIVE,
@@ -17,18 +24,21 @@ func _init():
 	state = State.ALIVE
 
 
-func spawn(pos : Vector2) -> void:
+func spawn(pos: Vector2) -> void:
 	if (pos != null):
 		position = pos
 
 
-func hit(damage : Damage) -> void:
-	health -= damage.damage_pts
-	if (health < 0):
+func hit(damage_pts: int) -> void:
+	health -= damage_pts
+	if (health <= 0):
 		health = 0
 		state = State.DEAD
 		die()
 
+
+func is_enemy() -> bool:
+	return team == Team.ENEMY
 
 func die() -> void:
 	queue_free()

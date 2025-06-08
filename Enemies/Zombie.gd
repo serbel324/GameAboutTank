@@ -8,7 +8,7 @@ var direction : Vector2 = Vector2.RIGHT
 
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func _ready() -> void:
 	var tank : TankController = get_node("/root/World/Tank") as TankController
 	target = tank.get_hull()
 
@@ -23,7 +23,7 @@ func state_alive(_delta : float) -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta : float):
+func _process(delta : float) -> void:
 	match state:
 		State.ALIVE:
 			state_alive(delta)
@@ -31,6 +31,6 @@ func _process(delta : float):
 			queue_free()
 
 
-func _integrate_forces(physics_state : PhysicsDirectBodyState2D):
+func _integrate_forces(physics_state : PhysicsDirectBodyState2D) -> void:
 	physics_state.linear_velocity = linear_movement
 	rotation = Vector2.RIGHT.angle_to(direction)
